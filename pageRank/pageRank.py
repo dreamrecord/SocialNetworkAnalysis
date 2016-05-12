@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import numpy as np
+import copy
 
 CONVERGE_THRES = 10**-3
 
@@ -9,7 +10,7 @@ class pageRank:
     def __init__(self, adjMatrix, dampingFactor, convergeThres = CONVERGE_THRES):
         
         # adj matrix
-        self.A = np.copy(adjMatrix)
+        self.A = copy.deepcopy(adjMatrix)
         self.dim = self.A.shape[0]
         self.convergeThres = convergeThres
 
@@ -35,7 +36,7 @@ class pageRank:
 
             newP = np.dot(self.A.transpose(), self.P)
             diff = np.linalg.norm(newP-self.P, 1)
-            self.P = np.copy(newP)
+            self.P = copy.deepcopy(newP)
             
             numOfIters += 1
 
